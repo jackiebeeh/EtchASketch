@@ -1,0 +1,23 @@
+/* Style Sheet for Etch A Sketch */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Fonts */
+@font-face {
+    font-family: "2Dumb";
+    src: url(./fonts/2Dumb.woff2);
+    src: url(./fonts/2Dumb.woff);
+}
+@font-face {
+    font-family: "3Dumb";
+    src: url(./fonts/3dumb.woff2);
+    src: url(./fonts/3dumb.woff);
+}
+
+body {
+    background: black;
+    color: white;
+}
