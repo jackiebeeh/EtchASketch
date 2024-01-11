@@ -16,38 +16,83 @@
 }
 
 body {
-    background: black;
+    background: darkslategrey;
     color: white;
     height: 100vh;
     width: 100%;
     transition: all 1s;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     transition: all 1s;
 }
+.header {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "3dumb",sanserif;
+    font-size: 3em;
+}
+.device {
+    position: relative;
+    height: 350px;
+    width: 350px;
+    background: black;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px black;
+}
+
+.border {
+    height: 250px;
+    width: 250px;
+    padding: 50px;
+    background: radial-gradient(ellipse at top,red 50%, transparent), 
+    radial-gradient(ellipse at bottom,red 50%, transparent);
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px black;
+}
 .grid {
+    border: 2px solid black;
     height: 250px;
     width: 250px;
     color: white;
-    border: 30px solid darkred;
-    border-radius: 10px;
-    z-index:10;
+    background: black;
+    border-radius: 5px;
     display: flex;
+    gap: 1px;
+    overflow: hidden;
+    box-shadow: 0 0 15px black;
 }
 .column {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     width:100%;
+    gap:1px;
+    
 }
 .cell {
     height:100%;
     width:100%;
-    border: 1px solid darkslategrey;
+    /* border: 1px solid darkslategrey; */
     transition: background-color 3s;
+    
 }
 .draw {
     transition: all 0.8s;
     background: darkslategrey;
+}
+.footer {
+    background: darkslategrey;
+    width:100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.footer a {
+    color: inherit;
 }
