@@ -27,26 +27,24 @@ body {
     transition: all 1s;
 }
 .grid {
+    height: 250px;
+    width: 250px;
     color: white;
     border: 30px solid darkred;
     border-radius: 10px;
     z-index:10;
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .column {
-    /* border: 2px solid green; */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width:100%;
 }
 .cell {
+    height:100%;
+    width:100%;
     border: 1px solid darkslategrey;
-    height: 15px;
-    width: 15px;
     transition: background-color 3s;
 }
 .draw {
