@@ -36,7 +36,7 @@ function makeGrid() {
 }
 
 // Draw
-let color = "antiquewhite";
+let color = "rgb(38, 34, 34)";
 let device = document.querySelector(".device");
 device.addEventListener("mouseover", () => {
     let cells = document.querySelectorAll(".cell");
@@ -47,10 +47,10 @@ device.addEventListener("mouseover", () => {
         let yCoord = +(cell.getAttribute("y-coord"));
         rotateButtons(xCoord, yCoord);
     });
-    cell.addEventListener("mouseleave", () => {
-        setTimeout(() => { 
-            cell.style.backgroundColor = "transparent";
-        }, 5000);})
+    // cell.addEventListener("mouseleave", () => {
+    //     setTimeout(() => { 
+    //         cell.style.backgroundColor = "transparent";
+    //     }, 5000);})
     });
 });
 
