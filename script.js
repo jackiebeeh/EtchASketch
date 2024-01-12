@@ -1,5 +1,6 @@
 // Script for Etch A Sketch
 
+
 // Slider
 let slider = document.getElementById("myRange");
 let output = document.getElementById("output");
@@ -36,6 +37,27 @@ function makeGrid() {
     }
 }
 
+// DIfferent color settings
+let setting = "original";
+
+function getColor() {
+    if (setting === "original") {
+        let originalColor = "rgb(38, 34, 34)";
+        return originalColor;
+    }
+    if (setting === "rainbow") {
+        let rainbowColor = randomColor();
+        return rainbowColor;
+    }
+    if (setting ==="darken") {
+        
+    }
+}
+function randomColor() {
+    let randomColor = "#" + (Math.floor(Math.random()*16777215).toString(16));
+    return randomColor;
+}
+
 // Draw
 let color = "rgb(38, 34, 34)";
 let device = document.querySelector(".device");
@@ -43,7 +65,7 @@ device.addEventListener("mouseover", () => {
     let cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
     cell.addEventListener("mouseenter", () => {
-        cell.style.backgroundColor = color;
+        cell.style.backgroundColor = getColor();
         let xCoord = +(cell.getAttribute("x-coord"));
         let yCoord = +(cell.getAttribute("y-coord"));
         rotateButtons(xCoord, yCoord);
@@ -55,14 +77,41 @@ device.addEventListener("mouseover", () => {
     });
 });
 
+const leftButton = document.querySelector(".leftButton");
+leftButton.addEventListener("click", () => {
+    if (setting === "rainbow") {
+        setting = "original";
+    }
+    else {
+        setting = "rainbow";
+    }
+});
+
+
+const rightButton = document.querySelector(".rightButton");
+rightButton.addEventListener("click", () => {
+    if (setting === "darken") {
+        setting = "original";
+    }
+    else {
+        setting = "darken";
+    }
+});
+
+
+
+
+
+
+
 //  Button Rotation
 let currentX = -1;
 let currentY = -1;
 let xRotation = 0;
 let yRotation = 0;
 let rotationDeg = 40;
-const leftButton = document.querySelector(".leftButton");
-const rightButton = document.querySelector(".rightButton");
+
+
 function rotateButtons(x, y){
     if(x > currentX) {
       xRotation += rotationDeg;
@@ -88,3 +137,4 @@ window.onload = rotateRightButton();
 function rotateRightButton() {
     rightButton.style.transform = `rotate(140deg)`;
 }
+
