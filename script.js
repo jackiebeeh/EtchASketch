@@ -16,6 +16,7 @@ slider.oninput = function() {
 
 window.onload = makeGrid();
 
+
 // Making grid
 function makeGrid() {
     let grid = document.querySelector(".grid")
@@ -60,9 +61,9 @@ let currentY = -1;
 let xRotation = 0;
 let yRotation = 0;
 let rotationDeg = 40;
+const leftButton = document.querySelector(".leftButton");
+const rightButton = document.querySelector(".rightButton");
 function rotateButtons(x, y){
-    const leftButton = document.querySelector(".leftButton");
-  
     if(x > currentX) {
       xRotation += rotationDeg;
       leftButton.style.transform = `rotate(${xRotation}deg)`;
@@ -70,10 +71,7 @@ function rotateButtons(x, y){
       xRotation -= rotationDeg;
       leftButton.style.transform = `rotate(${xRotation}deg)`;
     }
-  
     currentX = x;
-  
-    const rightButton = document.querySelector(".rightButton");
   
     if(y > currentY){
       yRotation += rotationDeg;
@@ -82,6 +80,11 @@ function rotateButtons(x, y){
       yRotation -= rotationDeg;
       rightButton.style.transform = `rotate(${yRotation}deg)`;
     }
-  
     currentY = y;
+}
+
+window.onload = rotateRightButton();
+
+function rotateRightButton() {
+    rightButton.style.transform = `rotate(140deg)`;
 }
