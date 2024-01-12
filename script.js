@@ -59,7 +59,7 @@ let currentX = -1;
 let currentY = -1;
 let xRotation = 0;
 let yRotation = 0;
-let rotationDeg = 30;
+let rotationDeg = 40;
 function rotateButtons(x, y){
     const leftButton = document.querySelector(".leftButton");
   
