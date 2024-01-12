@@ -15,6 +15,7 @@
     src: url(./fonts/3dumb.woff);
 }
 body {
+    box-shadow: inset 0 0 50px black;
     background: darkslategrey;
     color: antiquewhite;
     height: 100vh;
@@ -27,6 +28,7 @@ body {
     transition: all 1s;
 }
 .header {
+    user-select: none;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -98,9 +100,10 @@ body {
 }
 .draw {
     transition: all 0.8s;
-    background: darkslategrey;
+    background: antiquewhite;
 }
 .output {
+    user-select: none;
     margin-bottom: 20px;
     text-align: center;
     font-family: "2Dumb",sans-serif;
@@ -134,13 +137,15 @@ body {
     box-shadow: 0 0 20px black;
 }
 .footer {
-    background: darkslategrey;
+    user-select: none;
+    background: rgb(28, 47, 47);
     width:100%;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    box-shadow: 0 0 20px black;
 }
 .footer a {
     color: inherit;

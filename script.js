@@ -45,12 +45,14 @@ device.addEventListener("mouseover", () => {
         }, 3000);})
     });
 });
-// Draw
 
 
+let leftButton = document.querySelector(".leftButton");
+leftButton.addEventListener("click", () => {
+    console.log(`left click`);
 
+});
+let rightButton = document.querySelector(".rightButton");
+rightButton.addEventListener("click", () => {
 
-
-
-
-
+});
