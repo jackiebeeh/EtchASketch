@@ -100,6 +100,12 @@ body {
     transition: all 0.8s;
     background: darkslategrey;
 }
+.output {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "2Dumb",sans-serif;
+    font-size: 20px;
+}
 .slider {
     -webkit-appearance: none;
     appearance: none;
@@ -114,6 +120,13 @@ body {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
+    height: 30px;
+    width: 30px;
+    background-image: radial-gradient(white, antiquewhite, brown 99%);
+    border-radius: 50%;
+    box-shadow: 0 0 20px black;
+}
+.slider::-moz-range-thumb {
     height: 30px;
     width: 30px;
     background-image: radial-gradient(white, antiquewhite, brown 99%);
