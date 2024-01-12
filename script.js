@@ -23,36 +23,65 @@ function makeGrid() {
         let newColumn = document.createElement("div");
         newColumn.classList.add("column");
         newColumn.id = "column" + i;
+        
         grid.appendChild(newColumn);
         for (let j = 0; j < currentValue; j++) {
             let newCell = document.createElement("div");
             newCell.classList.add("cell");
+            newCell.setAttribute("x-coord", i);
+            newCell.setAttribute("y-coord", j);
             newColumn.appendChild(newCell);
         }
     }
 }
 
+// Draw
+let color = "antiquewhite";
 let device = document.querySelector(".device");
 device.addEventListener("mouseover", () => {
     let cells = document.querySelectorAll(".cell");
-    cells.forEach((x) => {
-    x.addEventListener("mouseenter", () => {
-        x.classList.add("draw");
+    cells.forEach((cell) => {
+    cell.addEventListener("mouseenter", () => {
+        cell.style.backgroundColor = color;
+        let xCoord = +(cell.getAttribute("x-coord"));
+        let yCoord = +(cell.getAttribute("y-coord"));
+        rotateButtons(xCoord, yCoord);
     });
-    x.addEventListener("mouseleave", () => {
+    cell.addEventListener("mouseleave", () => {
         setTimeout(() => { 
-            x.classList.remove("draw");
-        }, 3000);})
+            cell.style.backgroundColor = "transparent";
+        }, 5000);})
     });
 });
 
-
-let leftButton = document.querySelector(".leftButton");
-leftButton.addEventListener("click", () => {
-    console.log(`left click`);
-
-});
-let rightButton = document.querySelector(".rightButton");
-rightButton.addEventListener("click", () => {
-
-});
+//  Button Rotation
+let currentX = -1;
+let currentY = -1;
+let xRotation = 0;
+let yRotation = 0;
+let rotationDeg = 30;
+function rotateButtons(x, y){
+    const leftButton = document.querySelector(".leftButton");
+  
+    if(x > currentX) {
+      xRotation += rotationDeg;
+      leftButton.style.transform = `rotate(${xRotation}deg)`;
+    }if (x < currentX) {
+      xRotation -= rotationDeg;
+      leftButton.style.transform = `rotate(${xRotation}deg)`;
+    }
+  
+    currentX = x;
+  
+    const rightButton = document.querySelector(".rightButton");
+  
+    if(y > currentY){
+      yRotation += rotationDeg;
+      rightButton.style.transform = `rotate(${yRotation}deg)`;
+    }if (y < currentY){
+      yRotation -= rotationDeg;
+      rightButton.style.transform = `rotate(${yRotation}deg)`;
+    }
+  
+    currentY = y;
+}

@@ -54,23 +54,40 @@ body {
     box-shadow: inset 0 0 10px black;
 }
 .buttons {
-    display: flex;
-    gap:80px;
+    /* display: flex; */
+    /* gap:250px; */
 }
 .leftButton,
 .rightButton {
     height: 30px;
     width: 30px;
-    background-image: radial-gradient(white, antiquewhite, brown 99%);
+    background-image: radial-gradient(white, antiquewhite, rgb(165, 97, 42) 99%);
     border-radius: 50%;
     margin: 8px;
     box-shadow: 0 0 10px black;
-    position: relative;
-    left: 40px;
-    
+    position: absolute;
+    top: 300px;
+    /* left: 5px; */
+    /* transform: translateY(-50px); */
     &:hover {
         cursor: pointer;
     }
+    &::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        box-shadow: inset 0 0 5px -1px rgb(165, 97, 42);
+        border-radius: 50%;
+        left: 4px;
+        top: 4px;
+    }
+}
+.leftButton {
+    left: 5px;
+}
+.rightButton {
+    left: 300px;
 }
 .grid {
     flex-shrink: 0;
@@ -81,7 +98,7 @@ body {
     background: black;
     border-radius: 5px;
     display: flex;
-    gap: 1px;
+    /* gap: 1px; */
     overflow: hidden;
     box-shadow: 0 0 15px black;
 }
@@ -90,13 +107,13 @@ body {
     display: flex;
     flex-direction: column;
     width:100%;
-    gap:1px;
+    /* gap:1px; */
 }
 .cell {
     height:100%;
     width:100%;
-    border: 1px solid darkslategrey;
-    transition: background-color 3s;
+    border: 0.5px solid darkslategrey;
+    transition: background-color 0.3s;
 }
 .draw {
     transition: all 0.8s;
@@ -125,14 +142,14 @@ body {
     appearance: none;
     height: 30px;
     width: 30px;
-    background-image: radial-gradient(white, antiquewhite, brown 99%);
+    background-image: radial-gradient(white, antiquewhite, rgb(165, 97, 42) 99%);
     border-radius: 50%;
     box-shadow: 0 0 20px black;
 }
 .slider::-moz-range-thumb {
     height: 30px;
     width: 30px;
-    background-image: radial-gradient(white, antiquewhite, brown 99%);
+    background-image: radial-gradient(white, antiquewhite, rgb(165, 97, 42) 99%);
     border-radius: 50%;
     box-shadow: 0 0 20px black;
 }
@@ -146,6 +163,7 @@ body {
     align-items: center;
     gap: 10px;
     box-shadow: 0 0 20px black;
+    color:rgba(250, 235, 215, 0.7);
 }
 .footer a {
     color: inherit;
