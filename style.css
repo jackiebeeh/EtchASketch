@@ -20,12 +20,10 @@ body {
     color: antiquewhite;
     height: 100vh;
     width: 100%;
-    transition: all 1s;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    transition: all 1s;
 }
 .header {
     user-select: none;
@@ -35,7 +33,7 @@ body {
     align-items: center;
     font-family: "3dumb",sanserif;
     font-size: 3em;
-    text-shadow: 0 10px 10px #000000;
+    text-shadow: 0 15px 10px #000000;
 }
 .device {
     position: relative;
@@ -52,7 +50,7 @@ body {
     background: radial-gradient(ellipse at top,#ff0000 50%, transparent), 
     radial-gradient(ellipse at bottom,#ff0000 50%, transparent);
     border-radius: 15px;
-    box-shadow: inset 0 0px 10px 5px #00000090;
+    box-shadow: inset 0 -2px 10px 5px #00000090;
 }
 .logo {
     position: absolute;
@@ -66,7 +64,7 @@ body {
 .rightButton {
     height: 30px;
     width: 30px;
-    background-image: radial-gradient(#ffffff, #faebd7, #a5612a 99%);
+    background-image: radial-gradient(white , antiquewhite 60%, rgb(165, 97, 42) 90%);
     border-radius: 50%;
     margin: 8px;
     box-shadow: 0 0 10px #000000;
@@ -99,11 +97,19 @@ body {
     height: 250px;
     width: 250px;
     color: #ffffff;
-    
+    background-color: black;
     border-radius: 5px;
     display: flex;
     overflow: hidden;
     box-shadow: 0 0 10px 5px #000000;
+    &::before {
+        content: "";
+        height: inherit;
+        width: inherit;
+        position: absolute;
+        box-shadow: inset 0 0 10px black;
+        pointer-events: none;
+    }
 }
 .column {
     display: flex;
@@ -122,7 +128,8 @@ body {
     margin-bottom: 20px;
     text-align: center;
     font-family: "2Dumb",sans-serif;
-    font-size: 20px;
+    font-size: 22px;
+    text-shadow: 0px 2px 2px black;
 }
 .slider {
     -webkit-appearance: none;
@@ -140,14 +147,14 @@ body {
     appearance: none;
     height: 30px;
     width: 30px;
-    background-image: radial-gradient(white, antiquewhite, rgb(165, 97, 42) 99%);
+    background-image: radial-gradient(white , antiquewhite 60%, rgb(165, 97, 42) 90%);
     border-radius: 50%;
     box-shadow: 0 0 20px black;
 }
 .slider::-moz-range-thumb {
     height: 30px;
     width: 30px;
-    background-image: radial-gradient(white, antiquewhite, rgb(165, 97, 42) 99%);
+    background-image: radial-gradient(white , antiquewhite 60%, rgb(165, 97, 42) 90%);
     border-radius: 50%;
     box-shadow: 0 0 20px black;
 }
