@@ -1,7 +1,6 @@
 // Script for Etch A Sketch
 
 // Making grid
-
 const makeGrid = () => {
     let grid = document.querySelector(".grid")
     for (let i = 0; i < currentValue; i++) {
@@ -20,51 +19,7 @@ const makeGrid = () => {
         }
     }
 }
-
 let currentCell;
-
-// Different color settings
-let setting = "original";
-const colors = ["#BF1F2C", "#7F151D", "#FF293B", "#400A0F", "#E52535"];
-
-
-
-function getColor() {
-    if (setting === "original") {
-        return "#262222";
-    }
-    else if (setting === "rainbow") {
-        return randomColor();
-    }
-    // THIS NEEDS TO BE FIXED!!!
-    else if (setting ==="darken") {
-        let result = blendRGBColors();
-        return result;
-    }
-}
-
-function blendRGBColors() {
-    let bgColor = getBackgroundColor();
-    if (bgColor === undefined) {
-        console.log(`undefined bgColor`);
-    }
-    console.log(bgColor);
-    let shade = "rgb(0, 0, 0)";
-    let percentage = "0.1";
-    let f=bgColor.split(","),t=shade.split(","),R=parseInt(f[0].slice(4)),G=parseInt(f[1]),B=parseInt(f[2]);
-    return ("rgba("+(Math.round((parseInt(t[0].slice(4))-R)*percentage)+R)+","+(Math.round((parseInt(t[1])-G)*percentage)+G)+","+(Math.round((parseInt(t[2])-B)*percentage)+B)+")");
-}
-
-// Get background color of current cell:
-function getBackgroundColor() {
-    return currentCell.style.backgroundColor;
-}
-
-function randomColor() {
-    let randomNumber = Math.floor(Math.random() * 5);
-    let chosenColor = colors[randomNumber];
-    return chosenColor;
-}
 
 // Draw
 let device = document.querySelector(".device");
@@ -78,13 +33,49 @@ device.addEventListener("mouseenter", () => {
             let yCoord = +(cell.getAttribute("y-coord"));
             rotateButtons(xCoord, yCoord);
         });
-        return;
-    // cell.addEventListener("mouseleave", () => {
-    //     setTimeout(() => { 
-    //         cell.style.backgroundColor = "transparent";
-    //     }, 5000);})
     });
 });
+
+// Different color settings
+let setting = "original";
+const colors = ["#BF1F2C", "#7F151D", "#FF293B", "#400A0F", "#E52535"];
+function getColor() {
+    if (setting === "original") {
+        return "#262222";
+    }
+    else if (setting === "rainbow") {
+        return randomColor();
+    }
+    // THIS NEEDS TO BE FIXED!!!
+    else if (setting ==="darken") {
+        let result = blendRGBColors();
+        return result;
+    }
+}
+function randomColor() {
+    let randomNumber = Math.floor(Math.random() * 5);
+    let chosenColor = colors[randomNumber];
+    return chosenColor;
+}
+function blendRGBColors() {
+    let bgColor = getBackgroundColor(),
+    shade = "rgb(0, 0, 0)",
+    percentage = "0.2",
+    f=bgColor.split(","),
+    t=shade.split(","),
+    R=parseInt(f[0].slice(4)),
+    G=parseInt(f[1]),
+    B=parseInt(f[2]);
+
+    return ("rgb("+
+    (Math.round((parseInt(t[0].slice(4))-R)*percentage)+R)+","+
+    (Math.round((parseInt(t[1])-G)*percentage)+G)+","+
+    (Math.round((parseInt(t[2])-B)*percentage)+B)+")");
+}
+
+function getBackgroundColor() {
+    return currentCell.style.backgroundColor;
+}
 
 //  Button clicks
 const leftButton = document.querySelector(".leftButton");
@@ -108,11 +99,11 @@ rightButton.addEventListener("click", () => {
 });
 
 //  Button Rotation
-let currentX = -1;
-let currentY = -1;
+let currentX = 0;
+let currentY = 0;
 let xRotation = 0;
 let yRotation = 0;
-let rotationDeg = 40;
+let rotationDeg = 35;
 function rotateButtons(x, y){
     if(x > currentX) {
       xRotation += rotationDeg;
@@ -150,7 +141,5 @@ slider.oninput = function() {
     grid.innerHTML = "";
     makeGrid();
 }
-
-
 
 window.onload = makeGrid();
