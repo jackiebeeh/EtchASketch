@@ -72,7 +72,6 @@ function blendRGBColors() {
     (Math.round((parseInt(t[1])-G)*percentage)+G)+","+
     (Math.round((parseInt(t[2])-B)*percentage)+B)+")");
 }
-
 function getBackgroundColor() {
     return currentCell.style.backgroundColor;
 }
@@ -133,10 +132,10 @@ function rotateRightButton() {
 let slider = document.getElementById("myRange");
 let output = document.getElementById("output");
 let currentValue = slider.value;
-output.innerHTML = currentValue;
+output.innerHTML = `${currentValue} x ${currentValue}`;
 slider.oninput = function() {
     currentValue = this.value;
-    output.innerHTML = this.value;
+    output.innerHTML = `${this.value} x ${this.value}`;
     let grid = document.querySelector(".grid")
     grid.innerHTML = "";
     makeGrid();
