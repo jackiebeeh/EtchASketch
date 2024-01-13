@@ -81,9 +81,11 @@ const leftButton = document.querySelector(".leftButton");
 leftButton.addEventListener("click", () => {
     if (setting === "rainbow") {
         setting = "original";
+        output.style.color = "antiquewhite";
     }
     else {
         setting = "rainbow";
+        output.style.color = "red";
     }
 });
 
@@ -91,9 +93,11 @@ const rightButton = document.querySelector(".rightButton");
 rightButton.addEventListener("click", () => {
     if (setting === "darken") {
         setting = "original";
+        output.style.color = "antiquewhite";
     }
     else {
         setting = "darken";
+        output.style.color = "black";
     }
 });
 
