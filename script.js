@@ -1,25 +1,8 @@
 // Script for Etch A Sketch
 
-
-// Slider
-let slider = document.getElementById("myRange");
-let output = document.getElementById("output");
-let currentValue = slider.value;
-output.innerHTML = currentValue;
-slider.oninput = function() {
-    console.log(`input value`);
-    currentValue = this.value
-    output.innerHTML = this.value;
-    let grid = document.querySelector(".grid")
-    grid.innerHTML = "";
-    makeGrid();
-}
-
-window.onload = makeGrid();
-
-
 // Making grid
-function makeGrid() {
+
+const makeGrid = () => {
     let grid = document.querySelector(".grid")
     for (let i = 0; i < currentValue; i++) {
         let newColumn = document.createElement("div");
@@ -32,44 +15,70 @@ function makeGrid() {
             newCell.classList.add("cell");
             newCell.setAttribute("x-coord", i);
             newCell.setAttribute("y-coord", j);
+            newCell.style.backgroundColor = "#9c9c9c";
             newColumn.appendChild(newCell);
         }
     }
 }
 
-// DIfferent color settings
+let currentCell;
+
+// Different color settings
 let setting = "original";
+const colors = ["#BF1F2C", "#7F151D", "#FF293B", "#400A0F", "#E52535"];
+
+
 
 function getColor() {
     if (setting === "original") {
-        let originalColor = "rgb(38, 34, 34)";
-        return originalColor;
+        return "#262222";
     }
-    if (setting === "rainbow") {
-        let rainbowColor = randomColor();
-        return rainbowColor;
+    else if (setting === "rainbow") {
+        return randomColor();
     }
-    if (setting ==="darken") {
-        
+    // THIS NEEDS TO BE FIXED!!!
+    else if (setting ==="darken") {
+        let result = blendRGBColors();
+        return result;
     }
 }
+
+function blendRGBColors() {
+    let bgColor = getBackgroundColor();
+    if (bgColor === undefined) {
+        console.log(`undefined bgColor`);
+    }
+    console.log(bgColor);
+    let shade = "rgb(0, 0, 0)";
+    let percentage = "0.1";
+    let f=bgColor.split(","),t=shade.split(","),R=parseInt(f[0].slice(4)),G=parseInt(f[1]),B=parseInt(f[2]);
+    return ("rgba("+(Math.round((parseInt(t[0].slice(4))-R)*percentage)+R)+","+(Math.round((parseInt(t[1])-G)*percentage)+G)+","+(Math.round((parseInt(t[2])-B)*percentage)+B)+")");
+}
+
+// Get background color of current cell:
+function getBackgroundColor() {
+    return currentCell.style.backgroundColor;
+}
+
 function randomColor() {
-    let randomColor = "#" + (Math.floor(Math.random()*16777215).toString(16));
-    return randomColor;
+    let randomNumber = Math.floor(Math.random() * 5);
+    let chosenColor = colors[randomNumber];
+    return chosenColor;
 }
 
 // Draw
-let color = "rgb(38, 34, 34)";
 let device = document.querySelector(".device");
-device.addEventListener("mouseover", () => {
+device.addEventListener("mouseenter", () => {
     let cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
-    cell.addEventListener("mouseenter", () => {
-        cell.style.backgroundColor = getColor();
-        let xCoord = +(cell.getAttribute("x-coord"));
-        let yCoord = +(cell.getAttribute("y-coord"));
-        rotateButtons(xCoord, yCoord);
-    });
+        cell.addEventListener("mouseenter", () => {
+            currentCell = cell;
+            cell.style.backgroundColor = getColor();
+            let xCoord = +(cell.getAttribute("x-coord"));
+            let yCoord = +(cell.getAttribute("y-coord"));
+            rotateButtons(xCoord, yCoord);
+        });
+        return;
     // cell.addEventListener("mouseleave", () => {
     //     setTimeout(() => { 
     //         cell.style.backgroundColor = "transparent";
@@ -77,6 +86,7 @@ device.addEventListener("mouseover", () => {
     });
 });
 
+//  Button clicks
 const leftButton = document.querySelector(".leftButton");
 leftButton.addEventListener("click", () => {
     if (setting === "rainbow") {
@@ -86,7 +96,6 @@ leftButton.addEventListener("click", () => {
         setting = "rainbow";
     }
 });
-
 
 const rightButton = document.querySelector(".rightButton");
 rightButton.addEventListener("click", () => {
@@ -98,20 +107,12 @@ rightButton.addEventListener("click", () => {
     }
 });
 
-
-
-
-
-
-
 //  Button Rotation
 let currentX = -1;
 let currentY = -1;
 let xRotation = 0;
 let yRotation = 0;
 let rotationDeg = 40;
-
-
 function rotateButtons(x, y){
     if(x > currentX) {
       xRotation += rotationDeg;
@@ -133,8 +134,23 @@ function rotateButtons(x, y){
 }
 
 window.onload = rotateRightButton();
-
 function rotateRightButton() {
     rightButton.style.transform = `rotate(140deg)`;
 }
 
+// Slider
+let slider = document.getElementById("myRange");
+let output = document.getElementById("output");
+let currentValue = slider.value;
+output.innerHTML = currentValue;
+slider.oninput = function() {
+    currentValue = this.value;
+    output.innerHTML = this.value;
+    let grid = document.querySelector(".grid")
+    grid.innerHTML = "";
+    makeGrid();
+}
+
+
+
+window.onload = makeGrid();

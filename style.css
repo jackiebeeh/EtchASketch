@@ -16,7 +16,7 @@
 }
 body {
     box-shadow: inset 0 0 50px black;
-    background: darkslategrey;
+    background: #2f4f4f;
     color: antiquewhite;
     height: 100vh;
     width: 100%;
@@ -35,22 +35,22 @@ body {
     align-items: center;
     font-family: "3dumb",sanserif;
     font-size: 3em;
-    text-shadow: 0 10px 10px black;
+    text-shadow: 0 10px 10px #000000;
 }
 .device {
     position: relative;
     height: 350px;
     width: 350px;
-    background: black;
+    background: #000000;
     border-radius: 15px;
-    box-shadow: 0 10px 30px black;
+    box-shadow: 0 10px 30px #000000;
 }
 .border {
     height: 250px;
     width: 250px;
     padding: 50px;
-    background: radial-gradient(ellipse at top,red 50%, transparent), 
-    radial-gradient(ellipse at bottom,red 50%, transparent);
+    background: radial-gradient(ellipse at top,#ff0000 50%, transparent), 
+    radial-gradient(ellipse at bottom,#ff0000 50%, transparent);
     border-radius: 15px;
     box-shadow: inset 0 0px 10px 5px #00000090;
 }
@@ -60,16 +60,16 @@ body {
     font-family: "3Dumb", sans-serif;
     font-size: 24px;
     left: 85px;
-    text-shadow: 0 0 5px black;
+    text-shadow: 0 0 5px #000000;
 }
 .leftButton,
 .rightButton {
     height: 30px;
     width: 30px;
-    background-image: radial-gradient(white, antiquewhite, rgb(165, 97, 42) 99%);
+    background-image: radial-gradient(#ffffff, #faebd7, #a5612a 99%);
     border-radius: 50%;
     margin: 8px;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px #000000;
     position: absolute;
     top: 300px;
     transition: all 0.2s;
@@ -81,7 +81,7 @@ body {
         position: absolute;
         width: 10px;
         height: 10px;
-        box-shadow: inset 0 0 5px 1px rgb(165, 97, 42);
+        box-shadow: inset 0 0 5px 1px #a5612a;
         border-radius: 50%;
         left: 4px;
         top: 4px;
@@ -95,15 +95,15 @@ body {
 }
 .grid {
     flex-shrink: 0;
-    border: 2px solid #00000090;
+    border: 2px solid rgba(0, 0, 0, 0.565);
     height: 250px;
     width: 250px;
-    color: white;
-    background: rgb(156, 156, 156);
+    color: #ffffff;
+    
     border-radius: 5px;
     display: flex;
     overflow: hidden;
-    box-shadow: 0 0 10px 5px black;
+    box-shadow: 0 0 10px 5px #000000;
 }
 .column {
     display: flex;
@@ -115,10 +115,7 @@ body {
     width:100%;
     border-bottom: 1px solid #2f4f4f80;
     transition: background-color 0.3s;
-}
-.draw {
-    transition: all 0.8s;
-    background: antiquewhite;
+    background: #9c9c9c;
 }
 .output {
     user-select: none;
