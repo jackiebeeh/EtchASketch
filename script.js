@@ -48,7 +48,10 @@ function getColor() {
     }
     // THIS NEEDS TO BE FIXED!!!
     else if (setting ==="darken") {
-        let result = blendRGBColors();
+        let bgColor = getBackgroundColor();
+        let shade = "rgb(0, 0, 0)";
+        let percentage = "0.2";
+        let result = blendRGBColors(bgColor, shade, percentage);
         return result;
     }
 }
@@ -57,10 +60,10 @@ function randomColor() {
     let chosenColor = colors[randomNumber];
     return chosenColor;
 }
-function blendRGBColors() {
-    let bgColor = getBackgroundColor(),
-    shade = "rgb(0, 0, 0)",
-    percentage = "0.2",
+function getBackgroundColor() {
+    return currentCell.style.backgroundColor;
+}
+function blendRGBColors(bgColor, shade, percentage) {
     f=bgColor.split(","),
     t=shade.split(","),
     R=parseInt(f[0].slice(4)),
@@ -71,9 +74,6 @@ function blendRGBColors() {
     (Math.round((parseInt(t[0].slice(4))-R)*percentage)+R)+","+
     (Math.round((parseInt(t[1])-G)*percentage)+G)+","+
     (Math.round((parseInt(t[2])-B)*percentage)+B)+")");
-}
-function getBackgroundColor() {
-    return currentCell.style.backgroundColor;
 }
 
 //  Button clicks
@@ -146,3 +146,30 @@ slider.oninput = function() {
 }
 
 window.onload = makeGrid();
+
+// Shake to erase
+device.addEventListener("dragstart", () => {
+    let shakeCount = 0;
+    let shakeZone = document.querySelector(".shakeZone");
+    let cells = document.querySelectorAll(".cell");
+
+    shakeZone.addEventListener("dragenter", () => {
+        while (shakeCount < 20) {
+            shakeCount += 1;
+            cells.forEach((cell) => {
+                let bgColor = cell.style.backgroundColor;
+                let shade = "rgb(156, 156, 156)";
+                let percentage = "0.3"
+                let eraseColor = blendRGBColors(bgColor, shade, percentage);
+                cell.style.backgroundColor = eraseColor;
+                console.log(cell.style.backgroundColor);
+            });
+        }
+    });
+    device.addEventListener("dragend", () => {
+        
+    });
+});
+
+
+

@@ -35,8 +35,15 @@ body {
     font-size: 3em;
     text-shadow: 0 15px 10px #000000;
 }
+.shakeZone {
+    background: transparent;
+    height: 400px;
+    width: 400px;
+}
 .device {
     position: relative;
+    top: 25px;
+    left: 25px;
     height: 350px;
     width: 350px;
     background: #000000;
@@ -119,9 +126,9 @@ body {
 .cell {
     height:100%;
     width:100%;
-    border-bottom: 1px solid #2f4f4f80;
+    border-bottom: 1px solid rgba(47, 79, 79, 0.502);
     transition: background-color 0.3s;
-    background: #9c9c9c;
+    background-color: rgb(156, 156, 156);
 }
 .output {
     user-select: none;
