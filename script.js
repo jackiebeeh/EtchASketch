@@ -20,6 +20,7 @@ const makeGrid = () => {
     }
 }
 let currentCell;
+// !!! Fix current cell, for when mouse moves away from device
 
 // Draw
 let device = document.querySelector(".device");
@@ -34,6 +35,10 @@ device.addEventListener("mouseenter", () => {
             rotateButtons(xCoord, yCoord);
         });
     });
+});
+
+device.addEventListener("mouseleave", () => {
+
 });
 
 // Different color settings
@@ -148,12 +153,27 @@ slider.oninput = function() {
 window.onload = makeGrid();
 
 // Shake to erase
-device.addEventListener("dragstart", () => {
+// let device = document.querySelector(".device");
+let offsetX, offsetY;
+let initialTop, initialLeft;
+
+const move = (e) => {
+    device.style.left = `${e.clientX - offsetX}px`;
+    device.style.top = `${e.clientY - offsetY}px`;
+}
+
+device.addEventListener("mousedown", (e) => {
     let shakeCount = 0;
     let shakeZone = document.querySelector(".shakeZone");
     let cells = document.querySelectorAll(".cell");
 
-    shakeZone.addEventListener("dragenter", () => {
+    initialTop = device.style.top;
+    initialLeft = device.style.left;
+    offsetX = e.clientX - device.offsetLeft;
+    offsetY = e.clientY - device.offsetTop;
+    document.addEventListener("mousemove", move);
+
+    shakeZone.addEventListener("mouseenter", () => {
         while (shakeCount < 20) {
             shakeCount += 1;
             cells.forEach((cell) => {
@@ -161,15 +181,13 @@ device.addEventListener("dragstart", () => {
                 let shade = "rgb(156, 156, 156)";
                 let percentage = "0.3"
                 let eraseColor = blendRGBColors(bgColor, shade, percentage);
-                cell.style.backgroundColor = eraseColor;
-                console.log(cell.style.backgroundColor);
+                cell.style.backgroundColor = eraseColor;   
             });
         }
     });
-    device.addEventListener("dragend", () => {
-        
-    });
 });
-
-
-
+window.addEventListener("mouseup", () => {
+    device.style.top = initialTop;
+    device.style.left = initialLeft;
+    document.removeEventListener("mousemove", move);
+});

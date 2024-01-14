@@ -36,14 +36,16 @@ body {
     text-shadow: 0 15px 10px #000000;
 }
 .shakeZone {
+    position: relative;
     background: transparent;
-    height: 400px;
-    width: 400px;
+    height: 350px;
+    width: 350px;
 }
 .device {
-    position: relative;
-    top: 25px;
-    left: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 350px;
     width: 350px;
     background: #000000;
@@ -127,7 +129,7 @@ body {
     height:100%;
     width:100%;
     border-bottom: 1px solid rgba(47, 79, 79, 0.502);
-    transition: background-color 0.3s;
+    /* transition: background-color 0.1s; */
     background-color: rgb(156, 156, 156);
 }
 .output {
