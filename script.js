@@ -19,27 +19,18 @@ const makeGrid = () => {
         }
     }
 }
-let currentCell;
-// !!! Fix current cell, for when mouse moves away from device
 
 // Draw
-let device = document.querySelector(".device");
-device.addEventListener("mouseenter", () => {
-    let cells = document.querySelectorAll(".cell");
-    cells.forEach((cell) => {
-        cell.addEventListener("mouseenter", () => {
-            currentCell = cell;
-            cell.style.backgroundColor = getColor();
-            let xCoord = +(cell.getAttribute("x-coord"));
-            let yCoord = +(cell.getAttribute("y-coord"));
-            rotateButtons(xCoord, yCoord);
-        });
-    });
-});
-
-device.addEventListener("mouseleave", () => {
-
-});
+let currentCell;
+document.addEventListener("mouseover", (e) => {
+    if (e.target.classList.contains("cell")) {
+        currentCell = e.target;
+        currentCell.style.backgroundColor = getColor();
+        let xCoord = +(currentCell.getAttribute("x-coord"));
+        let yCoord = +(currentCell.getAttribute("y-coord"));
+        rotateButtons(xCoord, yCoord);
+    }
+})
 
 // Different color settings
 let setting = "original";
@@ -51,7 +42,6 @@ function getColor() {
     else if (setting === "rainbow") {
         return randomColor();
     }
-    // THIS NEEDS TO BE FIXED!!!
     else if (setting ==="darken") {
         let bgColor = getBackgroundColor();
         let shade = "rgb(0, 0, 0)";
@@ -153,7 +143,7 @@ slider.oninput = function() {
 window.onload = makeGrid();
 
 // Shake to erase
-// let device = document.querySelector(".device");
+let device = document.querySelector(".device");
 let offsetX, offsetY;
 let initialTop, initialLeft;
 
