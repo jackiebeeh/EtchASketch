@@ -34,6 +34,17 @@ const draw = function (e) {
     }
 }
 grid.addEventListener("mouseover", draw, false);
+grid.addEventListener("touchmove", (e) => {
+    let myLocation = e.touches[0];
+    let realTarget = document.elementFromPoint(myLocation.clientX, myLocation.clientY);
+    console.log(realTarget);
+    currentCell = realTarget;
+    currentCell.style.backgroundColor = getColor();
+    let xCoord = +(currentCell.getAttribute("x-coord"));
+    let yCoord = +(currentCell.getAttribute("y-coord"));
+    rotateButtons(xCoord, yCoord);
+});
+
 
 // Different color settings
 let setting = "original";
@@ -146,13 +157,11 @@ slider.oninput = function() {
 window.onload = makeGrid();
 
 // Shake to erase
-
 let offsetX, offsetY;
 let initialTop = device.style.top;
 let initialLeft = device.style.left;
 let shakeCount = 0;
 let shakeZone = document.querySelector(".shakeZone");
-
 let mousedown = 0;
 
 device.addEventListener("mousedown", (e) => {
@@ -165,6 +174,19 @@ device.addEventListener("mousedown", (e) => {
     document.addEventListener("mousemove", move);
     shakeZoneCounter();
 });
+
+window.addEventListener("shake", () => {
+    shakeCount += 1;
+    console.log(`phone shake: ${shakeCount}`);
+    if (shakeCount <= 100) {
+        console.log(`shakeCount is ${shakeCount}`);
+        shakeCount += 1;
+        cells.forEach((cell) => {
+            let bgColor = cell.style.backgroundColor;
+            cell.style.backgroundColor = eraseColor(bgColor);   
+        });
+    }
+})
 
 function shakeZoneCounter() {
     let cells = document.querySelectorAll(".cell");

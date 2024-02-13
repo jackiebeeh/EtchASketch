@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    /* touch-action: none; */
 }
 
 /* Fonts */
@@ -55,6 +56,7 @@ body {
     background: #000000;
     border-radius: 15px;
     box-shadow: 0 10px 30px #000000;
+    touch-action: none;
 }
 .border {
     height: 250px;
@@ -109,6 +111,7 @@ body {
     left: 300px;
 }
 .grid {
+    
     flex-shrink: 0;
     border: 2px solid rgba(0, 0, 0, 0.565);
     height: 250px;
@@ -189,4 +192,43 @@ body {
 }
 .footer a {
     color: inherit;
+}
+/* Mobile device settings */
+@media(max-width: 400px) {
+    .body {
+        height: 100%;
+    }
+    .header {
+        font-size: 2em;
+    }
+    .device {
+        width: 300px;
+        height: 300px;
+    }
+    .border {
+        width: 200px;
+        height: 200px;
+    }
+    .logo {
+        font-size: 20px;
+        left: 75px;
+    }
+    .grid {
+        width: 200px;
+        height: 200px;
+    }
+    .leftButton,
+    .rightButton {
+        top: 250px;
+    }
+    .rightButton {
+        left: 250px;
+    }
+    .footer {
+        margin-top: 20px;
+        margin-bottom: 0;
+        font-size: smaller;
+    }
+
+    
 }
