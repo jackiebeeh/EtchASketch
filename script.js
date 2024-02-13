@@ -146,39 +146,48 @@ window.onload = makeGrid();
 // Shake to erase
 let device = document.querySelector(".device");
 let offsetX, offsetY;
-let initialTop, initialLeft;
-
-const move = (e) => {
-    device.style.left = `${e.clientX - offsetX}px`;
-    device.style.top = `${e.clientY - offsetY}px`;
-}
+let initialTop = device.style.top;
+let initialLeft = device.style.left;
+let shakeCount = 0;
+let shakeZone = document.querySelector(".shakeZone");
+let cells = document.querySelectorAll(".cell");
+let mousedown = 0;
 
 device.addEventListener("mousedown", (e) => {
-    let shakeCount = 0;
-    let shakeZone = document.querySelector(".shakeZone");
-    let cells = document.querySelectorAll(".cell");
-
-    initialTop = device.style.top;
-    initialLeft = device.style.left;
+    shakeCount = 0;
+    mousedown = 1;
     offsetX = e.clientX - device.offsetLeft;
     offsetY = e.clientY - device.offsetTop;
     document.addEventListener("mousemove", move);
+    shakeZoneCounter();
+});
 
+function shakeZoneCounter() {
     shakeZone.addEventListener("mouseenter", () => {
-        while (shakeCount < 20) {
+        if (shakeCount < 20 && mousedown === 1) {
             shakeCount += 1;
             cells.forEach((cell) => {
                 let bgColor = cell.style.backgroundColor;
-                let shade = "rgb(156, 156, 156)";
-                let percentage = "0.3"
-                let eraseColor = blendRGBColors(bgColor, shade, percentage);
-                cell.style.backgroundColor = eraseColor;   
+                cell.style.backgroundColor = eraseColor(bgColor);   
             });
         }
     });
-});
+}
+
+function eraseColor(bgColor) {
+    let shade = "rgb(156, 156, 156)";
+    let percentage = "0.3";
+    return blendRGBColors(bgColor, shade, percentage);
+}
+
 window.addEventListener("mouseup", () => {
+    mousedown = 0;
     device.style.top = initialTop;
     device.style.left = initialLeft;
     document.removeEventListener("mousemove", move);
 });
+
+function move(e) {
+    device.style.left = `${e.clientX - offsetX}px`;
+    device.style.top = `${e.clientY - offsetY}px`;
+}
