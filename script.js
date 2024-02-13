@@ -156,6 +156,7 @@ let mousedown = 0;
 device.addEventListener("mousedown", (e) => {
     shakeCount = 0;
     mousedown = 1;
+    console.log(mousedown);
     offsetX = e.clientX - device.offsetLeft;
     offsetY = e.clientY - device.offsetTop;
     document.addEventListener("mousemove", move);
@@ -163,8 +164,9 @@ device.addEventListener("mousedown", (e) => {
 });
 
 function shakeZoneCounter() {
-    shakeZone.addEventListener("mouseenter", () => {
+    shakeZone.addEventListener("mouseover", () => {
         if (shakeCount < 20 && mousedown === 1) {
+            console.log(`shakeCount is ${shakeCount}`);
             shakeCount += 1;
             cells.forEach((cell) => {
                 let bgColor = cell.style.backgroundColor;
@@ -176,12 +178,13 @@ function shakeZoneCounter() {
 
 function eraseColor(bgColor) {
     let shade = "rgb(156, 156, 156)";
-    let percentage = "0.3";
+    let percentage = "0.2";
     return blendRGBColors(bgColor, shade, percentage);
 }
 
 window.addEventListener("mouseup", () => {
     mousedown = 0;
+    console.log(mousedown);
     device.style.top = initialTop;
     device.style.left = initialLeft;
     document.removeEventListener("mousemove", move);
