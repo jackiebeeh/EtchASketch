@@ -1,16 +1,5 @@
 // Script for Etch A Sketch
 
-//Page loader
-window.addEventListener("load", () => {
-    loaderPage = document.getElementById("loader-page");
-    loaderPage.classList.add("loaded");
-})
-setTimeout(() => {
-    window.addEventListener("load", () => {
-    loaderPage.remove();
-})},2000)
-
-
 
 // Making grid
 const makeGrid = () => {
