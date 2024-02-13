@@ -1,5 +1,7 @@
 // Script for Etch A Sketch
-
+let device = document.querySelector(".device");
+let grid = document.querySelector(".grid");
+let currentCell;
 
 // Making grid
 const makeGrid = () => {
@@ -22,8 +24,7 @@ const makeGrid = () => {
 }
 
 // Draw
-let currentCell;
-document.addEventListener("mouseover", (e) => {
+const draw = function (e) {
     if (e.target.classList.contains("cell")) {
         currentCell = e.target;
         currentCell.style.backgroundColor = getColor();
@@ -31,7 +32,8 @@ document.addEventListener("mouseover", (e) => {
         let yCoord = +(currentCell.getAttribute("y-coord"));
         rotateButtons(xCoord, yCoord);
     }
-})
+}
+grid.addEventListener("mouseover", draw, false);
 
 // Different color settings
 let setting = "original";
@@ -144,16 +146,17 @@ slider.oninput = function() {
 window.onload = makeGrid();
 
 // Shake to erase
-let device = document.querySelector(".device");
+
 let offsetX, offsetY;
 let initialTop = device.style.top;
 let initialLeft = device.style.left;
 let shakeCount = 0;
 let shakeZone = document.querySelector(".shakeZone");
-let cells = document.querySelectorAll(".cell");
+
 let mousedown = 0;
 
 device.addEventListener("mousedown", (e) => {
+    grid.removeEventListener("mouseover", draw);
     shakeCount = 0;
     mousedown = 1;
     console.log(mousedown);
@@ -164,8 +167,9 @@ device.addEventListener("mousedown", (e) => {
 });
 
 function shakeZoneCounter() {
+    let cells = document.querySelectorAll(".cell");
     shakeZone.addEventListener("mouseover", () => {
-        if (shakeCount < 20 && mousedown === 1) {
+        if (shakeCount <= 100 && mousedown === 1) {
             console.log(`shakeCount is ${shakeCount}`);
             shakeCount += 1;
             cells.forEach((cell) => {
@@ -178,11 +182,12 @@ function shakeZoneCounter() {
 
 function eraseColor(bgColor) {
     let shade = "rgb(156, 156, 156)";
-    let percentage = "0.2";
+    let percentage = "0.15";
     return blendRGBColors(bgColor, shade, percentage);
 }
 
 window.addEventListener("mouseup", () => {
+    grid.addEventListener("mouseover", draw, false);
     mousedown = 0;
     console.log(mousedown);
     device.style.top = initialTop;

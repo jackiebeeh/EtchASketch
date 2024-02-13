@@ -43,6 +43,7 @@ body {
     background: transparent;
     height: 350px;
     width: 350px;
+    z-index: 100;
 }
 .device {
     position: absolute;
