@@ -39,12 +39,14 @@ body {
     font-size: 3em;
     text-shadow: 0 15px 10px #000000;
 }
+
+/* Device */
 .shakeZone {
     position: relative;
     background: transparent;
     height: 350px;
     width: 350px;
-    z-index: 100;
+    /* z-index: 100; */
 }
 .device {
     position: absolute;
@@ -79,37 +81,8 @@ body {
     text-shadow: 0 0 5px #000000;
     user-select: none;
 }
-.leftButton,
-.rightButton {
-    height: 30px;
-    width: 30px;
-    background-image: radial-gradient(white , antiquewhite 60%, rgb(165, 97, 42) 90%);
-    border-radius: 50%;
-    margin: 8px;
-    box-shadow: 0 0 10px #000000;
-    position: absolute;
-    top: 300px;
-    transition: all 0.2s;
-    &:hover {
-        cursor: pointer;
-    }
-    &::before {
-        content: "";
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        box-shadow: inset 0 0 5px 1px #a5612a;
-        border-radius: 50%;
-        left: 4px;
-        top: 4px;
-    }
-}
-.leftButton {
-    left: 5px;
-}
-.rightButton {
-    left: 300px;
-}
+
+/* Grid */
 .grid {
     
     flex-shrink: 0;
@@ -143,6 +116,41 @@ body {
     /* transition: background-color 0.1s; */
     background-color: rgb(156, 156, 156);
 }
+
+/* Buttons */
+.leftButton,
+.rightButton {
+    height: 30px;
+    width: 30px;
+    background-image: radial-gradient(white , antiquewhite 60%, rgb(165, 97, 42) 90%);
+    border-radius: 50%;
+    margin: 8px;
+    box-shadow: 0 0 10px #000000;
+    position: absolute;
+    top: 300px;
+    transition: all 0.2s;
+    &:hover {
+        cursor: pointer;
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        box-shadow: inset 0 0 5px 1px #a5612a;
+        border-radius: 50%;
+        left: 4px;
+        top: 4px;
+    }
+}
+.leftButton {
+    left: 5px;
+}
+.rightButton {
+    left: 300px;
+}
+
+/* Pixel Slider */
 .output {
     user-select: none;
     margin-bottom: 20px;
@@ -178,19 +186,23 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 20px black;
 }
+
+/* Info Button */
 .infoButton {
     height: 30px;
     width: 30px;
+    background: black;
     border: 3px solid antiquewhite;
-    position: fixed;
+    position: absolute;
     bottom: 50px;
     right: 20px;
     border-radius: 50%;
     box-shadow: 0 0px 15px black;
-    &&:hover {
-        cursor: pointer;
-        box-shadow: inset 0 0px 15px black;
-    }
+    z-index:100;
+}
+.infoButton:hover {
+    cursor: pointer;
+    box-shadow: inset 0 0px 15px black;
 }
 .infoButton::before,
 .infoButton::after {
@@ -207,6 +219,34 @@ body {
 .infoButton::after {
     height: 3px;
     top: 5px;
+}
+.info {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-49%, -61%);
+    height: 200px;
+    width: 200px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #000000;
+    z-index: ;
+    text-align: center;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+.visible {
+    display: flex;
+}
+.visible::before {
+    width: 100vw;
+    height: 100vh;
+    background: #0000005f;
+    content:"";
+    position: fixed;
+    z-index: -1;
 }
 
 .footer {

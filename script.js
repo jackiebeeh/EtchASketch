@@ -221,3 +221,22 @@ function move(e) {
     device.style.left = `${e.clientX - offsetX}px`;
     device.style.top = `${e.clientY - offsetY}px`;
 }
+
+
+
+// info button
+
+let infoButton = document.querySelector(".infoButton");
+let info = document.querySelector(".info");
+
+infoButton.addEventListener("mouseenter", () => {
+    console.log(`mouse enter info`);
+    info.classList.add("visible");
+    console.log(info.classList);
+})
+
+infoButton.addEventListener("mouseleave", () => {
+    console.log(`mouse leave info`);
+    info.classList.remove("visible");
+    console.log(info.classList);
+})
