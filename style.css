@@ -178,6 +178,37 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 20px black;
 }
+.infoButton {
+    height: 30px;
+    width: 30px;
+    border: 3px solid antiquewhite;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0px 15px black;
+    &&:hover {
+        cursor: pointer;
+        box-shadow: inset 0 0px 15px black;
+    }
+}
+.infoButton::before,
+.infoButton::after {
+    content: "";
+    width: 3px;
+    background-color: antiquewhite;
+    position: absolute;
+    right: 13.5px;
+}
+.infoButton::before {
+    height: 14px;
+    bottom: 5px;
+}
+.infoButton::after {
+    height: 3px;
+    top: 5px;
+}
+
 .footer {
     user-select: none;
     background: rgb(28, 47, 47);
@@ -193,6 +224,8 @@ body {
 .footer a {
     color: inherit;
 }
+
+
 /* Mobile device settings */
 @media(max-width: 400px) {
     .body {
