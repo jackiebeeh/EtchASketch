@@ -241,14 +241,18 @@ infoButton.addEventListener("mouseleave", () => {
     console.log(info.classList);
 })
 
-infoButton.addEventListener("touchstart", () => {
-    console.log(`mouse enter info`);
-    info.classList.add("visible");
-    console.log(info.classList);
-})
-
-infoButton.addEventListener("touchend", () => {
-    console.log(`mouse leave info`);
-    info.classList.remove("visible");
-    console.log(info.classList);
-})
+let touched = 0;
+infoButton.addEventListener("click", () => {
+    if (touched === 0) {
+        touched = 1;
+        console.log(touched);
+        info.classList.add("visible");
+        console.log(info.classList);
+    }
+    else if (touched === 1) {
+        touched = 0;
+        console.log(touched);
+        info.classList.remove("visible");
+        console.log(info.classList);
+    }
+});
