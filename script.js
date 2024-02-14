@@ -229,13 +229,13 @@ function move(e) {
 let infoButton = document.querySelector(".infoButton");
 let info = document.querySelector(".info");
 
-infoButton.addEventListener("mouseenter", () => {
+infoButton.addEventListener("touchstart", () => {
     console.log(`mouse enter info`);
     info.classList.add("visible");
     console.log(info.classList);
 })
 
-infoButton.addEventListener("mouseleave", () => {
+infoButton.addEventListener("touchend", () => {
     console.log(`mouse leave info`);
     info.classList.remove("visible");
     console.log(info.classList);
