@@ -23,6 +23,7 @@ body {
     background: #2f4f4f;
     color: antiquewhite;
     height: 100vh;
+    min-height: 600px;
     width: 100%;
     display: flex;
     flex-direction: column;

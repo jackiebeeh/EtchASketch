@@ -240,3 +240,15 @@ infoButton.addEventListener("mouseleave", () => {
     info.classList.remove("visible");
     console.log(info.classList);
 })
+
+infoButton.addEventListener("touchstart", () => {
+    console.log(`mouse enter info`);
+    info.classList.add("visible");
+    console.log(info.classList);
+})
+
+infoButton.addEventListener("touchend", () => {
+    console.log(`mouse leave info`);
+    info.classList.remove("visible");
+    console.log(info.classList);
+})
