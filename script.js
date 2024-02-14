@@ -45,7 +45,6 @@ grid.addEventListener("touchmove", (e) => {
     rotateButtons(xCoord, yCoord);
 });
 
-
 // Different color settings
 let setting = "original";
 const colors = ["#BF1F2C", "#7F151D", "#FF293B", "#400A0F", "#E52535"];
@@ -97,7 +96,6 @@ leftButton.addEventListener("click", () => {
         output.style.color = "red";
     }
 });
-
 const rightButton = document.querySelector(".rightButton");
 rightButton.addEventListener("click", () => {
     if (setting === "darken") {
@@ -135,7 +133,6 @@ function rotateButtons(x, y){
     }
     currentY = y;
 }
-
 window.onload = rotateRightButton();
 function rotateRightButton() {
     rightButton.style.transform = `rotate(140deg)`;
@@ -153,7 +150,6 @@ slider.oninput = function() {
     grid.innerHTML = "";
     makeGrid();
 }
-
 window.onload = makeGrid();
 
 // Shake to erase
@@ -163,7 +159,6 @@ let initialLeft = device.style.left;
 let shakeCount = 0;
 let shakeZone = document.querySelector(".shakeZone");
 let mousedown = 0;
-
 device.addEventListener("mousedown", (e) => {
     grid.removeEventListener("mouseover", draw);
     shakeCount = 0;
@@ -174,7 +169,6 @@ device.addEventListener("mousedown", (e) => {
     document.addEventListener("mousemove", move);
     shakeZoneCounter();
 });
-
 window.addEventListener("shake", () => {
     shakeCount += 1;
     console.log(`phone shake: ${shakeCount}`);
@@ -187,7 +181,6 @@ window.addEventListener("shake", () => {
         });
     }
 })
-
 function shakeZoneCounter() {
     let cells = document.querySelectorAll(".cell");
     shakeZone.addEventListener("mouseover", () => {
@@ -201,13 +194,11 @@ function shakeZoneCounter() {
         }
     });
 }
-
 function eraseColor(bgColor) {
     let shade = "rgb(156, 156, 156)";
     let percentage = "0.15";
     return blendRGBColors(bgColor, shade, percentage);
 }
-
 window.addEventListener("mouseup", () => {
     grid.addEventListener("mouseover", draw, false);
     mousedown = 0;
@@ -216,31 +207,26 @@ window.addEventListener("mouseup", () => {
     device.style.left = initialLeft;
     document.removeEventListener("mousemove", move);
 });
-
 function move(e) {
     device.style.left = `${e.clientX - offsetX}px`;
     device.style.top = `${e.clientY - offsetY}px`;
 }
 
-
-
 // info button
-
 let infoButton = document.querySelector(".infoButton");
 let info = document.querySelector(".info");
-
 infoButton.addEventListener("mouseenter", () => {
     console.log(`mouse enter info`);
     info.classList.add("visible");
     console.log(info.classList);
 })
-
 infoButton.addEventListener("mouseleave", () => {
     console.log(`mouse leave info`);
     info.classList.remove("visible");
     console.log(info.classList);
 })
 
+// --touch events
 let touched = 0;
 infoButton.addEventListener("click", () => {
     if (touched === 0) {

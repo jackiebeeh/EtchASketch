@@ -265,7 +265,6 @@ body {
     color: inherit;
 }
 
-
 /* Mobile device settings */
 @media(max-width: 400px) {
     .body {
